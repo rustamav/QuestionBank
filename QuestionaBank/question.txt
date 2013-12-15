@@ -1,0 +1,20 @@
+1.A selection sort compares adjacent elements and swaps them if they are in the wrong order.
+2.Main memory holds its data if the computer is turned off.
+3.The body of a while loop may never execute.
+4.Binary is considered the best number base for a computer.
+5.Browsers are programs that provide access to Web resources.
+6.Network software is based on layered models.
+7.Addresses are needed in every layer of the network communication.
+8.All network connectors are implemented in software.
+9.A client/server network is a network in which one computer is a client and provides services to the other computers, which are called servers.
+10.A satellite is a type of wired communications media.
+11.The compiler will catch all your programming mistakes.
+12.A repeater is a device that receives a radio signal, strengthens it, and sends it on.
+13.WiFi is a wireless communication technology that uses red light to send and receive information.
+14.A WAN covers a large geographic distance, such as a state, a country.
+15.The main difference between infrared and Bluetooth transmission is that Bluetooth needs line of site whilst infrared does not.
+16.In a virtual circuit packet-switched subnet, all packets that belong to a logical connection can follow the same path through the network.
+17.Ciphertext is data before any encryption has been performed.
+18.Each pass of a bubble sort selects one item and puts it in its final sorted position.
+19.Synchronous Time Division multiplexing will not allocate a time slot to a source that is idle.
+20.Dumb terminals are used for simple data entry and data retrieval operations.
