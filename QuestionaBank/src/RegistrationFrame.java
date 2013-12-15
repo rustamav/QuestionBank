@@ -82,6 +82,10 @@ public class RegistrationFrame extends JFrame implements ActionListener{
 		tfQuestionNo = new JTextField();
 		tfQuestionNo.addActionListener(this);
 		contentPane.add(tfQuestionNo);
+		
+		bStart = new JButton("Start");
+		bStart.addActionListener(this);
+		contentPane.add(bStart);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -92,7 +96,9 @@ public class RegistrationFrame extends JFrame implements ActionListener{
 		switch (action) {
 		case "Start":
 
+			QuestionFrame qFrame = new QuestionFrame();
 			this.setVisible(false);
+			qFrame.setVisible(true);
 			System.out.println("start");
 			break;
 		case "High Scores":
