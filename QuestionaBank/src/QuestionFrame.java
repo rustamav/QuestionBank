@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+//fkjasdlk;fjsakmldn
 public class QuestionFrame extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
@@ -94,6 +94,8 @@ public class QuestionFrame extends JFrame implements ActionListener{
 				question = parts[0];
 				answer = parts[1];
 				lblQuestion.setText(question);
+			counter++;
+			counter--;
 			counter++;
 		}
 		else {
