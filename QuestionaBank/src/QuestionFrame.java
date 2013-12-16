@@ -24,8 +24,14 @@ public class QuestionFrame extends JFrame implements ActionListener {
 	private JButton bTrue;
 	private JButton bFalse;
 	private JButton bSkip;
+<<<<<<< HEAD
 	private int counter = 0;
 
+=======
+	private int counter = 1;
+	private String question;
+	private String answer;
+>>>>>>> branch 'master' of ssh://git@github.com/WanHrust/QuestionBank.git
 	/**
 	 * Launch the application.
 	 */
@@ -51,6 +57,7 @@ public class QuestionFrame extends JFrame implements ActionListener {
 		contentPane.setLayout(new GridLayout(4, 1));
 
 		setContentPane(contentPane);
+<<<<<<< HEAD
 
 
 		lblTest = new JLabel();
@@ -73,13 +80,24 @@ public class QuestionFrame extends JFrame implements ActionListener {
 		default:
 
 		
+=======
+		String[] parts;
+		String s="";
+>>>>>>> branch 'master' of ssh://git@github.com/WanHrust/QuestionBank.git
 		try {
-			lblQuestion = new JLabel(new QuestionAnswerHolder().getRandomQuestion());
-			contentPane.add(lblQuestion);
+			s = new QuestionAnswerHolder().getRandomQuestion();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		parts = s.split("#", 2);
+		question = parts[0];
+		answer = parts[1];
+		
+		lblQuestion = new JLabel(question);
+		contentPane.add(lblQuestion);
+
 		
 		bTrue = new JButton("True");
 		bTrue.addActionListener(this);
@@ -97,14 +115,30 @@ public class QuestionFrame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
+		String buttonName = e.getActionCommand();
+		if (answer.equalsIgnoreCase(buttonName))
+							ShareData.userScore++;
 		if (counter<ShareData.questionNO){
-			try {
-				lblQuestion.setText(new QuestionAnswerHolder().getRandomQuestion());
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+				String[] parts;
+				String s="";
+				try {
+					s = new QuestionAnswerHolder().getRandomQuestion();
+				} catch (IOException a) {
+					// TODO Auto-generated catch block
+					a.printStackTrace();
+				}
+				
+				parts = s.split("#", 2);
+				question = parts[0];
+				answer = parts[1];
+				lblQuestion.setText(question);
 			counter++;
+		}
+		else {
+			System.out.println("User score is " + ShareData.userScore);
+			this.setVisible(false);
+			this.dispose();
 		}
 	}
 
