@@ -2,6 +2,10 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
+=======
+import java.io.IOException;
+>>>>>>> branch 'master' of ssh://git@github.com/WanHrust/QuestionBank.git
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -48,6 +52,14 @@ public class QuestionFrame extends JFrame implements ActionListener {
 
 		setContentPane(contentPane);
 
+
+		lblTest = new JLabel();
+		lblTest.setText(ShareData.userFisrtName + " " + ShareData.questionNO);
+		contentPane.add(lblTest);
+
+		bNext = new JButton("Next");
+		bNext.addActionListener(this);
+		contentPane.add(bNext);
 	}
 
 	@Override
@@ -55,6 +67,10 @@ public class QuestionFrame extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		String action = e.getActionCommand();
 		switch (action) {
+		case "Next":
+			lblTest.setText(ShareData.userFisrtName);
+			break;
+		default:
 
 		
 		try {
@@ -78,5 +94,18 @@ public class QuestionFrame extends JFrame implements ActionListener {
 		contentPane.add(bSkip);
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (counter<ShareData.questionNO){
+			try {
+				lblQuestion.setText(new QuestionAnswerHolder().getRandomQuestion());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			counter++;
+		}
+	}
 
 }
