@@ -97,7 +97,7 @@ public class QuestionFrame extends JFrame implements ActionListener{
 			counter++;
 		}
 		else {
-			System.out.println("User score is " + ShareData.userScore);
+			System.out.println("User " + ShareData.userScore);
 			this.setVisible(false);
 			this.dispose();
 		}
