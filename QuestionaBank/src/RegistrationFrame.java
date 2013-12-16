@@ -10,8 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class RegistrationFrame extends JFrame implements ActionListener {
 
+public class RegistrationFrame extends JFrame implements ActionListener{
+
+	
 	private JPanel contentPane;
 	JLabel lblName;
 	JTextField tfUserName;
@@ -21,9 +23,9 @@ public class RegistrationFrame extends JFrame implements ActionListener {
 	JTextField tfUserFileName;
 	JLabel lblQuestionNo;
 	JTextField tfQuestionNo;
-
+	
 	JButton bStart;
-
+	
 	public void run() {
 		try {
 			RegistrationFrame frame = new RegistrationFrame();
@@ -42,59 +44,54 @@ public class RegistrationFrame extends JFrame implements ActionListener {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new GridLayout(9, 1));
-
+	
 		setContentPane(contentPane);
-
+		
+		
 		lblName = new JLabel("Enter your Name");
 		contentPane.add(lblName);
-
+		
 		tfUserName = new JTextField();
 		tfUserName.setActionCommand("tfUserName");
 		tfUserName.addActionListener(this);
-		tfUserName.setPreferredSize(new Dimension(Global.SCREEN_WIDTH / 10,
-				Global.SCREEN_HEIGHT / 10));
+		tfUserName.setPreferredSize(new Dimension(Global.SCREEN_WIDTH/10, Global.SCREEN_HEIGHT/10));
 		contentPane.add(tfUserName);
 		tfUserName.setColumns(10);
+		
 
+		
 		lblUserLastName = new JLabel("Enter Your Last Name");
 		contentPane.add(lblUserLastName);
-
+		
 		tfUserLastName = new JTextField();
 		tfUserLastName.addActionListener(this);
 		contentPane.add(tfUserLastName);
-		// tfUserLastName.setActionCommand("tfUserLastName");
-
+//		tfUserLastName.setActionCommand("tfUserLastName");
+		
+		
 		lblUserFileName = new JLabel("Enter Filename to store your data");
 		contentPane.add(lblUserFileName);
-
+		
 		tfUserFileName = new JTextField();
 		tfUserFileName.addActionListener(this);
 		contentPane.add(tfUserFileName);
-
+		
 		lblQuestionNo = new JLabel("How many question do you want to answer?");
 		contentPane.add(lblQuestionNo);
-
+		
 		tfQuestionNo = new JTextField();
 		tfQuestionNo.addActionListener(this);
 		contentPane.add(tfQuestionNo);
-
+		
 		bStart = new JButton("Start");
 		bStart.addActionListener(this);
 		contentPane.add(bStart);
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String action = e.getActionCommand();
 		System.out.println("typing....");
-<<<<<<< HEAD
-		ShareData.userFisrtName = tfUserName.getText();
-		ShareData.userLastName = tfUserLastName.getText();
-		ShareData.userFileName = tfUserLastName.getText();
-		ShareData.questionNO = Integer.parseInt(tfQuestionNo.getText());
-		boolean wrongInput = true;
-=======
 		int numberOfQuestions = -1;
 		//while(numberOfQuestions==-1 || numberOfQuestions>20){
 		//	try{
@@ -103,13 +100,9 @@ public class RegistrationFrame extends JFrame implements ActionListener {
 		//		numberOfQuestions = -1;	
 		//	}
 		//}
->>>>>>> branch 'master' of ssh://git@github.com/WanHrust/QuestionBank.git
 		switch (action) {
 		case "Start":
-<<<<<<< HEAD
-=======
 			ShareData.questionNO = Integer.parseInt(tfQuestionNo.getText());
->>>>>>> branch 'master' of ssh://git@github.com/WanHrust/QuestionBank.git
 			QuestionFrame qFrame = new QuestionFrame();
 			this.setVisible(false);
 			qFrame.setVisible(true);
