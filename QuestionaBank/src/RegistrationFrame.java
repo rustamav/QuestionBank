@@ -88,16 +88,32 @@ public class RegistrationFrame extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		String action = e.getActionCommand();
 		System.out.println("typing....");
+<<<<<<< HEAD
 		ShareData.userFisrtName = tfUserName.getText();
 		ShareData.userLastName = tfUserLastName.getText();
 		ShareData.userFileName = tfUserLastName.getText();
 		ShareData.questionNO = Integer.parseInt(tfQuestionNo.getText());
 		boolean wrongInput = true;
+=======
+		int numberOfQuestions = -1;
+		//while(numberOfQuestions==-1 || numberOfQuestions>20){
+		//	try{
+		//		numberOfQuestions = Integer.parseInt(tfQuestionNo.getText());
+		//	}catch(NumberFormatException f){
+		//		numberOfQuestions = -1;	
+		//	}
+		//}
+>>>>>>> branch 'master' of ssh://git@github.com/WanHrust/QuestionBank.git
 		switch (action) {
 		case "Start":
+<<<<<<< HEAD
+=======
+			ShareData.questionNO = Integer.parseInt(tfQuestionNo.getText());
+>>>>>>> branch 'master' of ssh://git@github.com/WanHrust/QuestionBank.git
 			QuestionFrame qFrame = new QuestionFrame();
 			this.setVisible(false);
 			qFrame.setVisible(true);
+			this.dispose();
 			System.out.println("start");
 			break;
 		case "High Scores":
