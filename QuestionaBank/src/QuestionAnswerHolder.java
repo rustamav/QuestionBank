@@ -82,6 +82,5 @@ public class QuestionAnswerHolder {
 		AL.remove(index);
 		String s = q + "#" + a;
 		return s;
-
 	}
 }

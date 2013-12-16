@@ -98,6 +98,7 @@ public class InitialFrame extends JFrame implements ActionListener {
 			RegistrationFrame regFrame = new RegistrationFrame();
 			regFrame.setVisible(true);
 			this.setVisible(false);
+			this.dispose();
 			System.out.println("start");
 			break;
 		case "High Scores":
