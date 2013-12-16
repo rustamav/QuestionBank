@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-//fkjasdlk;fjsakmldn
 public class QuestionFrame extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
@@ -95,11 +94,9 @@ public class QuestionFrame extends JFrame implements ActionListener{
 				answer = parts[1];
 				lblQuestion.setText(question);
 			counter++;
-			counter--;
-			counter++;
 		}
 		else {
-			System.out.println("User score is " + ShareData.userScore);
+			System.out.println("User score is sfdfsfsd " + ShareData.userScore);
 			this.setVisible(false);
 			this.dispose();
 		}
