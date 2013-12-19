@@ -3,7 +3,11 @@ GROUP LAYOUT
 4. Where game logic should be?
 in switch cases
 5. What is Queue in InitialFrame.
+<<<<<<< HEAD
 6. How to hyphenate text to a new line (use Label or something else)
 =====================
 1. Should we store the answered questions?
 2. How to close window when it is out of focus?
+=======
+6. How to hyphenate text to a new line (use Label or something else)
+>>>>>>> branch 'master' of ssh://git@github.com/WanHrust/QuestionBank.git

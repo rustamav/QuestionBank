@@ -15,7 +15,6 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.border.EmptyBorder;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-//fkjasdlk;fjsakmldn
 public class QuestionFrame extends JFrame implements ActionListener {
 
 	private JPanel pTFQuestion;
@@ -36,10 +35,11 @@ public class QuestionFrame extends JFrame implements ActionListener {
 	private JRadioButtonMenuItem rb3;
 	private JRadioButtonMenuItem rb4;
 	private JRadioButtonMenuItem rb5;
-	
+
 	private JLabel lMCQuestion;
 	private JButton bViewAnswer;
 	private JCheckBox cbShowExplanation;
+
 	/**
 	 * Launch the application.
 	 */
@@ -62,8 +62,6 @@ public class QuestionFrame extends JFrame implements ActionListener {
 		setBounds(0, 0, Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT);
 		pTFQuestion = new JPanel();
 		pTFQuestion.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
-
 
 		setContentPane(pTFQuestion);
 		String[] parts;
@@ -90,32 +88,52 @@ public class QuestionFrame extends JFrame implements ActionListener {
 		bSkip = new JButton("Skip");
 		bSkip.addActionListener(this);
 		GroupLayout gl_pTFQuestion = new GroupLayout(pTFQuestion);
-		gl_pTFQuestion.setHorizontalGroup(
-			gl_pTFQuestion.createParallelGroup(Alignment.LEADING)
-				.addComponent(lblQuestion, GroupLayout.PREFERRED_SIZE, 790, GroupLayout.PREFERRED_SIZE)
-				.addGroup(gl_pTFQuestion.createSequentialGroup()
-					.addGap(212)
-					.addGroup(gl_pTFQuestion.createParallelGroup(Alignment.LEADING)
-						.addComponent(bSkip, GroupLayout.PREFERRED_SIZE, 339, GroupLayout.PREFERRED_SIZE)
-						.addComponent(bFalse, GroupLayout.PREFERRED_SIZE, 339, GroupLayout.PREFERRED_SIZE)
-						.addComponent(bTrue, GroupLayout.PREFERRED_SIZE, 339, GroupLayout.PREFERRED_SIZE))
-					.addGap(239))
-		);
-		gl_pTFQuestion.setVerticalGroup(
-			gl_pTFQuestion.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pTFQuestion.createSequentialGroup()
-					.addGap(1)
-					.addComponent(lblQuestion, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(bTrue, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addGap(51)
-					.addComponent(bFalse, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-					.addGap(45)
-					.addComponent(bSkip, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-					.addGap(149))
-		);
+		gl_pTFQuestion
+				.setHorizontalGroup(gl_pTFQuestion
+						.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblQuestion, GroupLayout.PREFERRED_SIZE,
+								790, GroupLayout.PREFERRED_SIZE)
+						.addGroup(
+								gl_pTFQuestion
+										.createSequentialGroup()
+										.addGap(212)
+										.addGroup(
+												gl_pTFQuestion
+														.createParallelGroup(
+																Alignment.LEADING)
+														.addComponent(
+																bSkip,
+																GroupLayout.PREFERRED_SIZE,
+																339,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																bFalse,
+																GroupLayout.PREFERRED_SIZE,
+																339,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																bTrue,
+																GroupLayout.PREFERRED_SIZE,
+																339,
+																GroupLayout.PREFERRED_SIZE))
+										.addGap(239)));
+		gl_pTFQuestion.setVerticalGroup(gl_pTFQuestion.createParallelGroup(
+				Alignment.LEADING).addGroup(
+				gl_pTFQuestion
+						.createSequentialGroup()
+						.addGap(1)
+						.addComponent(lblQuestion, GroupLayout.PREFERRED_SIZE,
+								147, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(bTrue, GroupLayout.PREFERRED_SIZE, 62,
+								GroupLayout.PREFERRED_SIZE)
+						.addGap(51)
+						.addComponent(bFalse, GroupLayout.PREFERRED_SIZE, 63,
+								GroupLayout.PREFERRED_SIZE)
+						.addGap(45)
+						.addComponent(bSkip, GroupLayout.PREFERRED_SIZE, 66,
+								GroupLayout.PREFERRED_SIZE).addGap(149)));
 		pTFQuestion.setLayout(gl_pTFQuestion);
-	
 
 		try {
 			h = new QuestionAnswerHolder();
@@ -125,22 +143,15 @@ public class QuestionFrame extends JFrame implements ActionListener {
 		}
 		Player p = new Player(ShareData.userFisrtName, ShareData.userLastName,
 				ShareData.userFileName);
-		
-		
-		
-		
+
 		pMCQuestion = new JPanel();
 		GroupLayout gl_panel_1 = new GroupLayout(pMCQuestion);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 395, Short.MAX_VALUE)
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 147, Short.MAX_VALUE)
-		);
+		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(
+				Alignment.LEADING).addGap(0, 395, Short.MAX_VALUE));
+		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(
+				Alignment.LEADING).addGap(0, 147, Short.MAX_VALUE));
 		pMCQuestion.setLayout(gl_panel_1);
-		
+
 		rb1 = new JRadioButtonMenuItem("Answer1");
 		rb2 = new JRadioButtonMenuItem("Answer 2");
 		rb3 = new JRadioButtonMenuItem("Answer 3");
@@ -151,7 +162,7 @@ public class QuestionFrame extends JFrame implements ActionListener {
 		pMCQuestion.add(rb3);
 		pMCQuestion.add(rb4);
 		pMCQuestion.add(rb5);
-	
+
 		bGroup = new ButtonGroup();
 		bGroup.add(rb1);
 		bGroup.add(rb2);
@@ -180,7 +191,8 @@ public class QuestionFrame extends JFrame implements ActionListener {
 			}
 		
 		if (++counter == 20) {
-			System.out.println("User score is " + score);
+			System.out.println("User score is " + ShareData.userScore);
+			this.setVisible(false);
 			this.dispose();
 		}
 
