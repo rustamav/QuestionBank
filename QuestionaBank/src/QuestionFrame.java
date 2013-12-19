@@ -174,22 +174,21 @@ public class QuestionFrame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
-		
+
 		String[] parts;
 		String s;
 		String buttonName = e.getActionCommand();
-		if(buttonName.equalsIgnoreCase(answer))
+		if (buttonName.equalsIgnoreCase(answer))
 			score += 3;
 		s = h.getRandomQuestion();
 		parts = s.split("#", 2);
 		question = parts[0];
 		answer = parts[1];
 		lblQuestion.setText(question);
-		if(counter ==2){
+		if (counter == 2) {
 			setContentPane(new MCQuestionPanel());
-			}
-		
+		}
+
 		if (++counter == 20) {
 			System.out.println("User score is " + ShareData.userScore);
 			this.setVisible(false);
