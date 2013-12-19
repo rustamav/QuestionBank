@@ -1,18 +1,17 @@
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class InitialFrame extends JFrame implements ActionListener {
 	private JPanel contentPane;
@@ -53,7 +52,6 @@ public class InitialFrame extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT);
 		contentPane = new JPanel();
-		contentPane.setLayout(new GridLayout(3,1));
 
 		menuBar = new JMenuBar();
 		mFile = new JMenu("File");
@@ -74,15 +72,35 @@ public class InitialFrame extends JFrame implements ActionListener {
 		bStartGame = new JButton("Start Game");
 		bStartGame.setSize(Global.SCREEN_WIDTH / 10, Global.SCREEN_HEIGHT / 10);
 		bStartGame.addActionListener(this);
-		contentPane.add(bStartGame);
 
 		 bHighScores = new JButton("High Scores");
 		bHighScores.addActionListener(this);
-		contentPane.add(bHighScores);
 
 		bExit = new JButton("Exit");
 		bExit.addActionListener(this);
-		contentPane.add(bExit);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addGap(189)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(bExit, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+						.addComponent(bHighScores, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(bStartGame, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE))
+					.addGap(184))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(81)
+					.addComponent(bStartGame, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+					.addGap(37)
+					.addComponent(bHighScores, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
+					.addGap(51)
+					.addComponent(bExit, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(214, Short.MAX_VALUE))
+		);
+		contentPane.setLayout(gl_contentPane);
 
 
 		setJMenuBar(menuBar);
