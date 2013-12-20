@@ -159,18 +159,19 @@ public class QuestionFrame extends JFrame implements ActionListener {
 		
 		try {
 			q = h.getRandomQuestion(0);
-			lblQuestion.setText(q.getQuestion());
+			
 			counter++;
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
 		
-		if (counter == 2) {
+		if (counter == 19) {
 			ShareData.userScore = score;
 				setContentPane(new MCQuestionPanel(h));
 				pTFQuestion.setVisible(false);
 		}
-
+		
+		lblQuestion.setText(q.getQuestion());
 //		if (counter == 27) {
 //			System.out.println("User score is " + score/*ShareData.userScore*/);
 //			this.setVisible(false);

@@ -34,8 +34,8 @@ public class QuestionAnswerHolder {
 		indexMultipleChoice = new ArrayList<Integer>();
 		for(int i=1;i<=20;i++)
 			indexTrueFalse.add(i);
-		for(int i=1;i<=8;i++)
-			indexMultipleChoice.add(i);
+		for(int j=1;j<=8;j++)
+			indexMultipleChoice.add(j);
 		// Load the JDBC driver
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -77,7 +77,7 @@ public class QuestionAnswerHolder {
 		}
 		
 		//will return true-false question
-		else{
+		else {
 			randomIndex = (int) (Math.random()*indexTrueFalse.size());
 			trueFalse.absolute(indexTrueFalse.get(randomIndex));
 			indexTrueFalse.remove(randomIndex);
