@@ -12,12 +12,12 @@ public class Question {
 	private String e;
 	private String correctAnswer;
 	private String explanation;
-	//private int type;
+	private int type;
 	//true-false question constructor
 	public Question(String question, String answer){
 		this.question = question;
 		this.correctAnswer = answer;
-		//this.type = 0;
+		this.type = 0;
 	}
 	
 	//multiple choice question constructor
@@ -31,7 +31,7 @@ public class Question {
 		this.e = e;
 		this.explanation = explanation;
 		this.correctAnswer = correctAnswer;
-		//this.type = 1;
+		this.type = 1;
 	}
 
 	public String getQuestion() {
@@ -98,11 +98,11 @@ public class Question {
 		this.explanation = explanation;
 	}
 
-//	public int getType() {
-//		return type;
-//	}
-//
-//	public void setType(int type) {
-//		this.type = type;
-//	}
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
 }

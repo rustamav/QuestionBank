@@ -70,7 +70,7 @@ public class QuestionAnswerHolder {
 
 		//will return multiple choice question
 		if(type==1){
-			randomIndex = (int) (Math.random()*indexMultipleChoice.size()) + 1;
+			randomIndex = (int) (Math.random()*indexMultipleChoice.size());
 			multipleChoice.absolute(indexMultipleChoice.get(randomIndex));
 			indexMultipleChoice.remove(randomIndex);
 			return new Question(multipleChoice.getString(1), multipleChoice.getString(2), multipleChoice.getString(3), multipleChoice.getString(4), multipleChoice.getString(5), multipleChoice.getString(6), multipleChoice.getString(7), multipleChoice.getString(8));
@@ -78,7 +78,7 @@ public class QuestionAnswerHolder {
 		
 		//will return true-false question
 		else{
-			randomIndex = (int) (Math.random()*indexTrueFalse.size()) + 1;
+			randomIndex = (int) (Math.random()*indexTrueFalse.size());
 			trueFalse.absolute(indexTrueFalse.get(randomIndex));
 			indexTrueFalse.remove(randomIndex);
 			return new Question(trueFalse.getString(1), trueFalse.getString(2));

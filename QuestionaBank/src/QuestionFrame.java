@@ -57,6 +57,9 @@ public class QuestionFrame extends JFrame implements ActionListener {
 	 * 
 	 * @throws IOException
 	 */
+	/**
+	 * 
+	 */
 	public QuestionFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT);
@@ -151,56 +154,78 @@ public class QuestionFrame extends JFrame implements ActionListener {
 				Alignment.LEADING).addGap(0, 147, Short.MAX_VALUE));
 		pMCQuestion.setLayout(gl_panel_1);
 
-		rb1 = new JRadioButtonMenuItem(q.getA());
-		rb2 = new JRadioButtonMenuItem(q.getB());
-		rb3 = new JRadioButtonMenuItem(q.getC());
-		rb4 = new JRadioButtonMenuItem(q.getD());
-		rb5 = new JRadioButtonMenuItem(q.getE());
-		pMCQuestion.add(rb1);
-		pMCQuestion.add(rb2);
-		pMCQuestion.add(rb3);
-		pMCQuestion.add(rb4);
-		pMCQuestion.add(rb5);
-
-		bGroup = new ButtonGroup();
-		bGroup.add(rb1);
-		bGroup.add(rb2);
-		bGroup.add(rb3);
-		bGroup.add(rb4);
-		bGroup.add(rb5);
+//		rb1 = new JRadioButtonMenuItem(q.getA());
+//		rb2 = new JRadioButtonMenuItem(q.getB());
+//		rb3 = new JRadioButtonMenuItem(q.getC());
+//		rb4 = new JRadioButtonMenuItem(q.getD());
+//		rb5 = new JRadioButtonMenuItem(q.getE());
+//		pMCQuestion.add(rb1);
+//		pMCQuestion.add(rb2);
+//		pMCQuestion.add(rb3);
+//		pMCQuestion.add(rb4);
+//		pMCQuestion.add(rb5);
+//
+//		bGroup = new ButtonGroup();
+//		bGroup.add(rb1);
+//		bGroup.add(rb2);
+//		bGroup.add(rb3);
+//		bGroup.add(rb4);
+//		bGroup.add(rb5);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		String buttonName = e.getActionCommand();
-		if (buttonName.equalsIgnoreCase(q.getCorrectAnswer()) && counter<20)
+		if (buttonName.equalsIgnoreCase(q.getCorrectAnswer()) && q.getType()==0)
 			score += 3;
-		else if (buttonName.equalsIgnoreCase(q.getCorrectAnswer()) && counter<27)
-			score+=5;
+		else if (buttonName.equalsIgnoreCase(q.getCorrectAnswer()) && q.getType()==1)
+			score += 5;
 		
-		if (counter<20){
+		if (counter == 19) {
+				setContentPane(new MCQuestionPanel());
+		}
+		
+		if (counter<19){
 			try {
 				q = h.getRandomQuestion(0);
+				counter++;
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 		}
-		else{
+		
+		else if (counter<27){
 			try {
 				q = h.getRandomQuestion(1);
+				counter++;
+				rb1 = new JRadioButtonMenuItem(q.getA());
+				rb2 = new JRadioButtonMenuItem(q.getB());
+				rb3 = new JRadioButtonMenuItem(q.getC());
+				rb4 = new JRadioButtonMenuItem(q.getD());
+				rb5 = new JRadioButtonMenuItem(q.getE());
+				pMCQuestion.add(rb1);
+				pMCQuestion.add(rb2);
+				pMCQuestion.add(rb3);
+				pMCQuestion.add(rb4);
+				pMCQuestion.add(rb5);
+
+				bGroup = new ButtonGroup();
+				bGroup.add(rb1);
+				bGroup.add(rb2);
+				bGroup.add(rb3);
+				bGroup.add(rb4);
+				bGroup.add(rb5);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 		}
 		
 		lblQuestion.setText(q.getQuestion());
-		if (counter == 19) {
-			setContentPane(new MCQuestionPanel());
-		}
+		
 
-		if (++counter == 27) {
-			System.out.println("User score is " + ShareData.userScore);
+		if (counter == 27) {
+			System.out.println("User score is " + score/*ShareData.userScore*/);
 			this.setVisible(false);
 			this.dispose();
 		}
