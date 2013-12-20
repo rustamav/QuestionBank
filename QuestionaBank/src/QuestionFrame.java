@@ -1,7 +1,7 @@
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
@@ -12,34 +12,33 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
-import javax.swing.border.EmptyBorder;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 
 public class QuestionFrame extends JFrame implements ActionListener {
 
 	private JPanel pTFQuestion;
-	private JPanel pMCQuestion;
+//	private JPanel pMCQuestion;
 	private JLabel lblQuestion;
 	private JButton bTrue;
 	private JButton bFalse;
 	private JButton bSkip;
 	private int score = 0;
 	private int counter = 0;
-	private String question;
-	private String answer;
 	private QuestionAnswerHolder h;
 
-	private ButtonGroup bGroup;
-	private JRadioButtonMenuItem rb1;
-	private JRadioButtonMenuItem rb2;
-	private JRadioButtonMenuItem rb3;
-	private JRadioButtonMenuItem rb4;
-	private JRadioButtonMenuItem rb5;
+//	private ButtonGroup bGroup;
+//	private JRadioButtonMenuItem rb1;
+//	private JRadioButtonMenuItem rb2;
+//	private JRadioButtonMenuItem rb3;
+//	private JRadioButtonMenuItem rb4;
+//	private JRadioButtonMenuItem rb5;
 
-	private JLabel lMCQuestion;
-	private JButton bViewAnswer;
-	private JCheckBox cbShowExplanation;
-
+//	private JLabel lMCQuestion;
+//	private JButton bViewAnswer;
+//	private JCheckBox cbShowExplanation;
+	
+	private Question q;
 	/**
 	 * Launch the application.
 	 */
@@ -54,8 +53,12 @@ public class QuestionFrame extends JFrame implements ActionListener {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 * 
 	 * @throws IOException
+	 */
+	/**
+	 * 
 	 */
 	public QuestionFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,20 +67,22 @@ public class QuestionFrame extends JFrame implements ActionListener {
 		pTFQuestion.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(pTFQuestion);
-		String[] parts;
-		String s = "";
+		
 		try {
-			s = new QuestionAnswerHolder().getRandomQuestion();
-		} catch (IOException e) {
+			h = new QuestionAnswerHolder();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			q = h.getRandomQuestion(0);
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		parts = s.split("#", 2);
-		question = parts[0];
-		answer = parts[1];
-
-		lblQuestion = new JLabel(question);
+		lblQuestion = new JLabel(q.getQuestion());
 
 		bTrue = new JButton("True");
 		bTrue.addActionListener(this);
@@ -135,41 +140,42 @@ public class QuestionFrame extends JFrame implements ActionListener {
 								GroupLayout.PREFERRED_SIZE).addGap(149)));
 		pTFQuestion.setLayout(gl_pTFQuestion);
 
-		try {
-			h = new QuestionAnswerHolder();
-		} catch (IOException a) {
-			// TODO Auto-generated catch block
-			a.printStackTrace();
-		}
-		Player p = new Player(ShareData.userFisrtName, ShareData.userLastName,
-				ShareData.userFileName);
+		
 
+//
+//		Player p = new Player(ShareData.userFisrtName, ShareData.userLastName,
+//				ShareData.userFileName);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-		String[] parts;
-		String s;
+		
 		String buttonName = e.getActionCommand();
-		if (buttonName.equalsIgnoreCase(answer))
+		if (buttonName.equalsIgnoreCase(q.getCorrectAnswer()) && q.getType()==0)
 			score += 3;
-		s = h.getRandomQuestion();
-		parts = s.split("#", 2);
-		question = parts[0];
-		answer = parts[1];
-		lblQuestion.setText(question);
+//		else if (buttonName.equalsIgnoreCase(q.getCorrectAnswer()) && q.getType()==1)
+//			score += 5;
+		
+		try {
+			q = h.getRandomQuestion(0);
+			lblQuestion.setText(q.getQuestion());
+			counter++;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
 		if (counter == 2) {
-			setContentPane(new MCQuestionPanel());
+			ShareData.userScore = score;
+				setContentPane(new MCQuestionPanel(h));
+				pTFQuestion.setVisible(false);
 		}
 
-		if (++counter == 20) {
-			System.out.println("User score is " + ShareData.userScore);
-			this.setVisible(false);
-			this.dispose();
-		}
+//		if (counter == 27) {
+//			System.out.println("User score is " + score/*ShareData.userScore*/);
+//			this.setVisible(false);
+//			this.dispose();
+//		}
 
 	} // end of actionPerformed()
 }

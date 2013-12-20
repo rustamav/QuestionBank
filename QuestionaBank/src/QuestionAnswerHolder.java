@@ -1,9 +1,10 @@
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class deals with the question and answer files. It creates an arraylists
@@ -14,10 +15,11 @@ import java.util.List;
  * 
  */
 public class QuestionAnswerHolder {
-
-	private List<String> QL = new ArrayList<String>();
-	private List<String> AL = new ArrayList<String>();
-
+	
+	private ArrayList<Integer> indexTrueFalse;
+	private ArrayList<Integer> indexMultipleChoice;
+	private ResultSet trueFalse;
+	private ResultSet multipleChoice;
 	/**
 	 * Default constructor. Tries to read from a question.txt and answer.txt
 	 * files.
@@ -26,42 +28,33 @@ public class QuestionAnswerHolder {
 	 *             Throws this exception in case there is some problem with
 	 *             reading files. Terminates the program.
 	 */
-	QuestionAnswerHolder() throws IOException {
-		// TODO Auto-generated method stub
-
-		String s;
-		String[] parts;
-
-		DataInputStream inQuestion = new DataInputStream(
-				new BufferedInputStream(new FileInputStream("question.txt")));
-		DataInputStream inAnswer = new DataInputStream(new BufferedInputStream(
-				new FileInputStream("answer.txt")));
-		while ((s = inQuestion.readLine()) != null) {
-			parts = s.split("\\.", 2);
-			QL.add(parts[1]);
+	public QuestionAnswerHolder() throws SQLException{
+		
+		indexTrueFalse = new ArrayList<Integer>();
+		indexMultipleChoice = new ArrayList<Integer>();
+		for(int i=1;i<=20;i++)
+			indexTrueFalse.add(i);
+		for(int i=1;i<=8;i++)
+			indexMultipleChoice.add(i);
+		// Load the JDBC driver
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
-		while ((s = inAnswer.readLine()) != null) {
-			parts = s.split("\\.", 2);
-			AL.add(parts[1]);
-		}
-	}
-
-	/**
-	 * Prints all questions and answers to them.
-	 */
-	public void printAll() {
-		for (int i = 0; i < QL.size(); i++) {
-			System.out.println(QL.get(i) + " " + AL.get(i));
-		}
-	}
-
-	/**
-	 * Returns the number of questions which were read from a file.
-	 * 
-	 * @return
-	 */
-	public int getNumberOfQuestion() {
-		return QL.size();
+		System.out.println("Driver loaded");
+		
+		// Establish a connection
+		Connection connection = DriverManager.getConnection
+					("jdbc:mysql://localhost/questionnaire", "root", "12345");
+		System.out.println("Database connected");
+		
+		PreparedStatement statement = connection.prepareStatement("select * from questionnaire", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		PreparedStatement statement2 = connection.prepareStatement("select * from multiple_choice", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		
+		this.trueFalse = statement.executeQuery();
+		this.multipleChoice = statement2.executeQuery();
+		//connection.close();
 	}
 
 	/**
@@ -72,13 +65,23 @@ public class QuestionAnswerHolder {
 	 * @return
 	 * String - concatenated question with answer. (e.g. Is ant stronger than elephant?#True)
 	 */
-	public String getRandomQuestion() {
-		int index = (int) (Math.random() * QL.size());
-		String q = QL.get(index);
-		String a = AL.get(index);
-		QL.remove(index);
-		AL.remove(index);
-		String s = q + "#" + a;
-		return s;
+	public Question getRandomQuestion(int type) throws SQLException{
+		int randomIndex=0;
+
+		//will return multiple choice question
+		if(type==1){
+			randomIndex = (int) (Math.random()*indexMultipleChoice.size());
+			multipleChoice.absolute(indexMultipleChoice.get(randomIndex));
+			indexMultipleChoice.remove(randomIndex);
+			return new Question(multipleChoice.getString(1), multipleChoice.getString(2), multipleChoice.getString(3), multipleChoice.getString(4), multipleChoice.getString(5), multipleChoice.getString(6), multipleChoice.getString(7), multipleChoice.getString(8));
+		}
+		
+		//will return true-false question
+		else{
+			randomIndex = (int) (Math.random()*indexTrueFalse.size());
+			trueFalse.absolute(indexTrueFalse.get(randomIndex));
+			indexTrueFalse.remove(randomIndex);
+			return new Question(trueFalse.getString(1), trueFalse.getString(2));
+		}
 	}
 }

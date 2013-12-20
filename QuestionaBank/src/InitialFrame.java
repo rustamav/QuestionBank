@@ -2,6 +2,7 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +23,7 @@ public class InitialFrame extends JFrame implements ActionListener {
 	JMenuItem miExit;
 
 	JButton bStartGame;
+	JButton bHighScores;
 	JButton bExit;
 	
 
@@ -29,7 +31,6 @@ public class InitialFrame extends JFrame implements ActionListener {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -72,15 +73,19 @@ public class InitialFrame extends JFrame implements ActionListener {
 		bStartGame.setSize(Global.SCREEN_WIDTH / 10, Global.SCREEN_HEIGHT / 10);
 		bStartGame.addActionListener(this);
 
+		 bHighScores = new JButton("High Scores");
+		bHighScores.addActionListener(this);
+
 		bExit = new JButton("Exit");
 		bExit.addActionListener(this);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 					.addGap(189)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addComponent(bExit, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+						.addComponent(bHighScores, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(bStartGame, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE))
 					.addGap(184))
 		);
@@ -89,9 +94,11 @@ public class InitialFrame extends JFrame implements ActionListener {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(81)
 					.addComponent(bStartGame, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
-					.addGap(56)
+					.addGap(37)
+					.addComponent(bHighScores, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
+					.addGap(51)
 					.addComponent(bExit, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(313, Short.MAX_VALUE))
+					.addContainerGap(214, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 
