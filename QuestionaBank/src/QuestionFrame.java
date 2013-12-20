@@ -1,7 +1,7 @@
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
@@ -12,8 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
-import javax.swing.border.EmptyBorder;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 
 public class QuestionFrame extends JFrame implements ActionListener {
 
@@ -25,8 +25,6 @@ public class QuestionFrame extends JFrame implements ActionListener {
 	private JButton bSkip;
 	private int score = 0;
 	private int counter = 0;
-	private String question;
-	private String answer;
 	private QuestionAnswerHolder h;
 
 	private ButtonGroup bGroup;
@@ -39,7 +37,8 @@ public class QuestionFrame extends JFrame implements ActionListener {
 	private JLabel lMCQuestion;
 	private JButton bViewAnswer;
 	private JCheckBox cbShowExplanation;
-
+	
+	private Question q;
 	/**
 	 * Launch the application.
 	 */
@@ -54,6 +53,7 @@ public class QuestionFrame extends JFrame implements ActionListener {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 * 
 	 * @throws IOException
 	 */
@@ -64,20 +64,22 @@ public class QuestionFrame extends JFrame implements ActionListener {
 		pTFQuestion.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(pTFQuestion);
-		String[] parts;
-		String s = "";
+		
 		try {
-			s = new QuestionAnswerHolder().getRandomQuestion();
-		} catch (IOException e) {
+			h = new QuestionAnswerHolder();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			q = h.getRandomQuestion(0);
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		parts = s.split("#", 2);
-		question = parts[0];
-		answer = parts[1];
-
-		lblQuestion = new JLabel(question);
+		lblQuestion = new JLabel(q.getQuestion());
 
 		bTrue = new JButton("True");
 		bTrue.addActionListener(this);
@@ -135,12 +137,9 @@ public class QuestionFrame extends JFrame implements ActionListener {
 								GroupLayout.PREFERRED_SIZE).addGap(149)));
 		pTFQuestion.setLayout(gl_pTFQuestion);
 
-		try {
-			h = new QuestionAnswerHolder();
-		} catch (IOException a) {
-			// TODO Auto-generated catch block
-			a.printStackTrace();
-		}
+		
+
+
 		Player p = new Player(ShareData.userFisrtName, ShareData.userLastName,
 				ShareData.userFileName);
 
@@ -152,11 +151,11 @@ public class QuestionFrame extends JFrame implements ActionListener {
 				Alignment.LEADING).addGap(0, 147, Short.MAX_VALUE));
 		pMCQuestion.setLayout(gl_panel_1);
 
-		rb1 = new JRadioButtonMenuItem("Answer1");
-		rb2 = new JRadioButtonMenuItem("Answer 2");
-		rb3 = new JRadioButtonMenuItem("Answer 3");
-		rb4 = new JRadioButtonMenuItem("Answer 4");
-		rb5 = new JRadioButtonMenuItem("Answer 5");
+		rb1 = new JRadioButtonMenuItem(q.getA());
+		rb2 = new JRadioButtonMenuItem(q.getB());
+		rb3 = new JRadioButtonMenuItem(q.getC());
+		rb4 = new JRadioButtonMenuItem(q.getD());
+		rb5 = new JRadioButtonMenuItem(q.getE());
 		pMCQuestion.add(rb1);
 		pMCQuestion.add(rb2);
 		pMCQuestion.add(rb3);
@@ -173,23 +172,34 @@ public class QuestionFrame extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-		String[] parts;
-		String s;
+		
 		String buttonName = e.getActionCommand();
-		if (buttonName.equalsIgnoreCase(answer))
+		if (buttonName.equalsIgnoreCase(q.getCorrectAnswer()) && counter<20)
 			score += 3;
-		s = h.getRandomQuestion();
-		parts = s.split("#", 2);
-		question = parts[0];
-		answer = parts[1];
-		lblQuestion.setText(question);
-		if (counter == 2) {
+		else if (buttonName.equalsIgnoreCase(q.getCorrectAnswer()) && counter<27)
+			score+=5;
+		
+		if (counter<20){
+			try {
+				q = h.getRandomQuestion(0);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		else{
+			try {
+				q = h.getRandomQuestion(1);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		lblQuestion.setText(q.getQuestion());
+		if (counter == 19) {
 			setContentPane(new MCQuestionPanel());
 		}
 
-		if (++counter == 20) {
+		if (++counter == 27) {
 			System.out.println("User score is " + ShareData.userScore);
 			this.setVisible(false);
 			this.dispose();
