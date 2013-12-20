@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 public class QuestionFrame extends JFrame implements ActionListener {
 
 	private JPanel pTFQuestion;
-	private JPanel pMCQuestion;
+//	private JPanel pMCQuestion;
 	private JLabel lblQuestion;
 	private JButton bTrue;
 	private JButton bFalse;
@@ -27,16 +27,16 @@ public class QuestionFrame extends JFrame implements ActionListener {
 	private int counter = 0;
 	private QuestionAnswerHolder h;
 
-	private ButtonGroup bGroup;
-	private JRadioButtonMenuItem rb1;
-	private JRadioButtonMenuItem rb2;
-	private JRadioButtonMenuItem rb3;
-	private JRadioButtonMenuItem rb4;
-	private JRadioButtonMenuItem rb5;
+//	private ButtonGroup bGroup;
+//	private JRadioButtonMenuItem rb1;
+//	private JRadioButtonMenuItem rb2;
+//	private JRadioButtonMenuItem rb3;
+//	private JRadioButtonMenuItem rb4;
+//	private JRadioButtonMenuItem rb5;
 
-	private JLabel lMCQuestion;
-	private JButton bViewAnswer;
-	private JCheckBox cbShowExplanation;
+//	private JLabel lMCQuestion;
+//	private JButton bViewAnswer;
+//	private JCheckBox cbShowExplanation;
 	
 	private Question q;
 	/**
@@ -142,35 +142,10 @@ public class QuestionFrame extends JFrame implements ActionListener {
 
 		
 
-
-		Player p = new Player(ShareData.userFisrtName, ShareData.userLastName,
-				ShareData.userFileName);
-
-		pMCQuestion = new JPanel();
-		GroupLayout gl_panel_1 = new GroupLayout(pMCQuestion);
-		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(
-				Alignment.LEADING).addGap(0, 395, Short.MAX_VALUE));
-		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(
-				Alignment.LEADING).addGap(0, 147, Short.MAX_VALUE));
-		pMCQuestion.setLayout(gl_panel_1);
-
-//		rb1 = new JRadioButtonMenuItem(q.getA());
-//		rb2 = new JRadioButtonMenuItem(q.getB());
-//		rb3 = new JRadioButtonMenuItem(q.getC());
-//		rb4 = new JRadioButtonMenuItem(q.getD());
-//		rb5 = new JRadioButtonMenuItem(q.getE());
-//		pMCQuestion.add(rb1);
-//		pMCQuestion.add(rb2);
-//		pMCQuestion.add(rb3);
-//		pMCQuestion.add(rb4);
-//		pMCQuestion.add(rb5);
 //
-//		bGroup = new ButtonGroup();
-//		bGroup.add(rb1);
-//		bGroup.add(rb2);
-//		bGroup.add(rb3);
-//		bGroup.add(rb4);
-//		bGroup.add(rb5);
+//		Player p = new Player(ShareData.userFisrtName, ShareData.userLastName,
+//				ShareData.userFileName);
+
 	}
 
 	@Override
@@ -179,56 +154,28 @@ public class QuestionFrame extends JFrame implements ActionListener {
 		String buttonName = e.getActionCommand();
 		if (buttonName.equalsIgnoreCase(q.getCorrectAnswer()) && q.getType()==0)
 			score += 3;
-		else if (buttonName.equalsIgnoreCase(q.getCorrectAnswer()) && q.getType()==1)
-			score += 5;
+//		else if (buttonName.equalsIgnoreCase(q.getCorrectAnswer()) && q.getType()==1)
+//			score += 5;
 		
-		if (counter == 19) {
-				setContentPane(new MCQuestionPanel());
+		try {
+			q = h.getRandomQuestion(0);
+			lblQuestion.setText(q.getQuestion());
+			counter++;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
 		
-		if (counter<19){
-			try {
-				q = h.getRandomQuestion(0);
-				counter++;
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
+		if (counter == 2) {
+			ShareData.userScore = score;
+				setContentPane(new MCQuestionPanel(h));
+				pTFQuestion.setVisible(false);
 		}
-		
-		else if (counter<27){
-			try {
-				q = h.getRandomQuestion(1);
-				counter++;
-				rb1 = new JRadioButtonMenuItem(q.getA());
-				rb2 = new JRadioButtonMenuItem(q.getB());
-				rb3 = new JRadioButtonMenuItem(q.getC());
-				rb4 = new JRadioButtonMenuItem(q.getD());
-				rb5 = new JRadioButtonMenuItem(q.getE());
-				pMCQuestion.add(rb1);
-				pMCQuestion.add(rb2);
-				pMCQuestion.add(rb3);
-				pMCQuestion.add(rb4);
-				pMCQuestion.add(rb5);
 
-				bGroup = new ButtonGroup();
-				bGroup.add(rb1);
-				bGroup.add(rb2);
-				bGroup.add(rb3);
-				bGroup.add(rb4);
-				bGroup.add(rb5);
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-		}
-		
-		lblQuestion.setText(q.getQuestion());
-		
-
-		if (counter == 27) {
-			System.out.println("User score is " + score/*ShareData.userScore*/);
-			this.setVisible(false);
-			this.dispose();
-		}
+//		if (counter == 27) {
+//			System.out.println("User score is " + score/*ShareData.userScore*/);
+//			this.setVisible(false);
+//			this.dispose();
+//		}
 
 	} // end of actionPerformed()
 }
