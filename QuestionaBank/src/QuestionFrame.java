@@ -144,31 +144,7 @@ public class QuestionFrame extends JFrame implements ActionListener {
 		Player p = new Player(ShareData.userFisrtName, ShareData.userLastName,
 				ShareData.userFileName);
 
-		pMCQuestion = new JPanel();
-		GroupLayout gl_panel_1 = new GroupLayout(pMCQuestion);
-		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(
-				Alignment.LEADING).addGap(0, 395, Short.MAX_VALUE));
-		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(
-				Alignment.LEADING).addGap(0, 147, Short.MAX_VALUE));
-		pMCQuestion.setLayout(gl_panel_1);
 
-		rb1 = new JRadioButtonMenuItem("Answer1");
-		rb2 = new JRadioButtonMenuItem("Answer 2");
-		rb3 = new JRadioButtonMenuItem("Answer 3");
-		rb4 = new JRadioButtonMenuItem("Answer 4");
-		rb5 = new JRadioButtonMenuItem("Answer 5");
-		pMCQuestion.add(rb1);
-		pMCQuestion.add(rb2);
-		pMCQuestion.add(rb3);
-		pMCQuestion.add(rb4);
-		pMCQuestion.add(rb5);
-
-		bGroup = new ButtonGroup();
-		bGroup.add(rb1);
-		bGroup.add(rb2);
-		bGroup.add(rb3);
-		bGroup.add(rb4);
-		bGroup.add(rb5);
 	}
 
 	@Override
