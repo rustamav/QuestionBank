@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  * TFQuestionFrame creates window to ask multiple choice questions. When
@@ -86,80 +87,39 @@ public class TFQuestionFrame extends JFrame implements ActionListener {
 		lFeedback.setVisible(false);
 		lFeedback.setHorizontalAlignment(SwingConstants.CENTER);
 		GroupLayout gl_pTFQuestion = new GroupLayout(pTFQuestion);
-		gl_pTFQuestion
-				.setHorizontalGroup(gl_pTFQuestion
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								gl_pTFQuestion
-										.createSequentialGroup()
-										.addGroup(
-												gl_pTFQuestion
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																lblQuestion,
-																GroupLayout.PREFERRED_SIZE,
-																790,
-																GroupLayout.PREFERRED_SIZE)
-														.addGroup(
-																gl_pTFQuestion
-																		.createSequentialGroup()
-																		.addGap(212)
-																		.addComponent(
-																				bTrue,
-																				GroupLayout.PREFERRED_SIZE,
-																				339,
-																				GroupLayout.PREFERRED_SIZE))
-														.addGroup(
-																gl_pTFQuestion
-																		.createSequentialGroup()
-																		.addGap(212)
-																		.addComponent(
-																				bFalse,
-																				GroupLayout.PREFERRED_SIZE,
-																				339,
-																				GroupLayout.PREFERRED_SIZE))
-														.addGroup(
-																gl_pTFQuestion
-																		.createSequentialGroup()
-																		.addGap(212)
-																		.addGroup(
-																				gl_pTFQuestion
-																						.createParallelGroup(
-																								Alignment.TRAILING,
-																								false)
-																						.addComponent(
-																								lFeedback,
-																								Alignment.LEADING,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								Short.MAX_VALUE)
-																						.addComponent(
-																								bNext,
-																								Alignment.LEADING,
-																								GroupLayout.DEFAULT_SIZE,
-																								339,
-																								Short.MAX_VALUE))))
-										.addContainerGap(184, Short.MAX_VALUE)));
-		gl_pTFQuestion.setVerticalGroup(gl_pTFQuestion.createParallelGroup(
-				Alignment.LEADING).addGroup(
-				gl_pTFQuestion
-						.createSequentialGroup()
-						.addGap(1)
-						.addComponent(lblQuestion, GroupLayout.PREFERRED_SIZE,
-								147, GroupLayout.PREFERRED_SIZE)
-						.addGap(6)
-						.addComponent(bTrue, GroupLayout.PREFERRED_SIZE, 62,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(51)
-						.addComponent(bFalse, GroupLayout.PREFERRED_SIZE, 63,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(45)
-						.addComponent(bNext, GroupLayout.PREFERRED_SIZE, 66,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(43)
-						.addComponent(lFeedback, GroupLayout.PREFERRED_SIZE,
-								34, GroupLayout.PREFERRED_SIZE).addGap(33)));
+		gl_pTFQuestion.setHorizontalGroup(
+			gl_pTFQuestion.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pTFQuestion.createSequentialGroup()
+					.addGroup(gl_pTFQuestion.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_pTFQuestion.createSequentialGroup()
+							.addGap(212)
+							.addComponent(bTrue, GroupLayout.PREFERRED_SIZE, 339, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_pTFQuestion.createSequentialGroup()
+							.addGap(212)
+							.addComponent(bFalse, GroupLayout.PREFERRED_SIZE, 339, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_pTFQuestion.createSequentialGroup()
+							.addGap(212)
+							.addGroup(gl_pTFQuestion.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(lFeedback, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(bNext, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)))
+						.addComponent(lblQuestion, GroupLayout.DEFAULT_SIZE, 964, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		gl_pTFQuestion.setVerticalGroup(
+			gl_pTFQuestion.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pTFQuestion.createSequentialGroup()
+					.addGap(1)
+					.addComponent(lblQuestion, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(bTrue, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+					.addGap(51)
+					.addComponent(bFalse, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+					.addGap(45)
+					.addComponent(bNext, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+					.addGap(43)
+					.addComponent(lFeedback, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addGap(33))
+		);
 		pTFQuestion.setLayout(gl_pTFQuestion);
 
 	}
