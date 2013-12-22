@@ -1,5 +1,9 @@
-
+/**
+ * Global holds global variables
+ * 
+ * @author Rustam Alashrafov, Abdykerim Erikov
+ * 
+ */
 public class Global {
-
-	static public int SCREEN_WIDTH = 800, SCREEN_HEIGHT = 600, NO_OF_QUESTIONS = 20;
+	static public int SCREEN_WIDTH = 1000, SCREEN_HEIGHT = 600;
 }

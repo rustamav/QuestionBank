@@ -1,0 +1,60 @@
+1) Which of the following condition is used to transmit two packets over a medium at the same time?
+A.Contention
+B. Collision
+C. Synchronous
+D.Asynchronous
+E. None of the above
+Explanation: Collision is the result of two devices attempting to transmit data at the same time
+2) In full duplex data transmission, both the sender and the receiver
+A.cannot talk at once
+B. can receive and send data simultaneously
+C. can send or receive data one at a time
+D.can do one way data transmission only
+E. None of the above
+Explanation: full-duplex (FDX), or sometimes double-duplex system, allows communication in both
+directions
+3) Which of the following TCP/IP protocol is used for transferring electronic mail messages from one
+machine to another?
+A.FTP
+B. SNMP
+C.SMTP
+D.RPC
+E. None of the above
+Explanation: Simple Mail Transfer Protocol
+4) Which of the following device is used to connect two systems, especially if the systems use different
+protocols?
+A.hub
+B. bridge
+C.gateway
+D.repeater
+E. None of the above
+Explanation: All others require same protocol
+5) A distributed network configuration in which all data/information pass through a central computer is
+A.bus network
+B. star network
+C. ring network
+D.Point-to-point network
+E. None of the above
+Explanation: The topology where the central node is responsible from transmission is star topology.
+6) What part of 192.168.10.51 is the Network ID, assuming a default subnet mask?
+A.192
+B. 192.168.10
+C. 0.0.0.5
+D.51
+E. None of the above
+Explanation: This is a class C address default form is N.N.N.H
+7) In CRC there is no error if the remainder at the receiver is _____.
+A.equal to the remainder at the sender
+B. zero
+C. nonzero
+D.the quotient at the sender
+Explanation: The protocol assumes error free transmission if the remainder is zero
+8) Usually, it takes 10-bits to represent one character. How many characters can be transmitted at a
+speed of 1200 BPS in a second?
+A.10
+B. 12
+C.120
+D.1200
+E. None of the above
+Explanation: 1200/10=120
+Extra Requirements

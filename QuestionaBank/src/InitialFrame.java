@@ -1,5 +1,4 @@
 import java.awt.EventQueue;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,119 +10,139 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
+/**
+ * Initial Frame creates initial window to start or exit the program
+ * 
+ * @author Rustam Alashrafov, Abdykerim Erikov
+ * 
+ */
 public class InitialFrame extends JFrame implements ActionListener {
-        private JPanel contentPane;
-        
-        JMenuBar menuBar;
-        JMenu mFile;
-        JMenuItem miNew;
-        JMenuItem miExit;
+	private JPanel contentPane;
 
-        JButton bStartGame;
-        JButton bExit;
-        
+	JMenuBar menuBar;
+	JMenu mFile;
+	JMenuItem miNew;
+	JMenuItem miExit;
 
-        /**
-         * Launch the application.
-         */
-        public static void main(String[] args) {
+	JButton bStartGame;
+	JButton bExit;
 
-                EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                                try {
-                                        InitialFrame frame = new InitialFrame();
-                                        // frame.pack();
-                                        frame.setVisible(true);
-                                } catch (Exception e) {
-                                        e.printStackTrace();
-                                }
-                        }
-                });
-        }
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
 
-        /**
-         * Create the frame.
-         */
-        public InitialFrame() {
-                super("Question Bank");
-                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                setBounds(0, 0, Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT);
-                contentPane = new JPanel();
+		// fancy look
+		// try {
+		// UIManager.setLookAndFeel( UIManager.getSystemLookAndFeelClassName());
+		// } catch (ClassNotFoundException | InstantiationException
+		// | IllegalAccessException | UnsupportedLookAndFeelException e1) {
+		// e1.printStackTrace();
+		// }
 
-                menuBar = new JMenuBar();
-                mFile = new JMenu("File");
-                miNew = new JMenuItem("New");
-                miExit = new JMenuItem("Exit");
-                miExit.setActionCommand("miExit");
-                miExit.addActionListener(this);
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					InitialFrame frame = new InitialFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-                menuBar.add(mFile);
-                mFile.add(miNew);
-                mFile.addSeparator();
-                mFile.add(miExit);
+	/**
+	 * Create the frame.
+	 */
+	public InitialFrame() {
+		super("Question Bank");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0, 0, Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT);
+		contentPane = new JPanel();
 
-                // contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-                // contentPane.setLayout(new BorderLayout(0, 0));
-                setContentPane(contentPane);
-                
-                bStartGame = new JButton("Start Game");
-                bStartGame.setSize(Global.SCREEN_WIDTH / 10, Global.SCREEN_HEIGHT / 10);
-                bStartGame.addActionListener(this);
+		menuBar = new JMenuBar();
+		mFile = new JMenu("File");
+		miNew = new JMenuItem("New");
+		miExit = new JMenuItem("Exit");
+		miExit.setActionCommand("miExit");
+		miExit.addActionListener(this);
 
-                bExit = new JButton("Exit");
-                bExit.addActionListener(this);
-                GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                gl_contentPane.setHorizontalGroup(
-                        gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                .addGroup(gl_contentPane.createSequentialGroup()
-                                        .addGap(189)
-                                        .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                .addComponent(bExit, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
-                                                .addComponent(bStartGame, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE))
-                                        .addGap(184))
-                );
-                gl_contentPane.setVerticalGroup(
-                        gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                .addGroup(gl_contentPane.createSequentialGroup()
-                                        .addGap(81)
-                                        .addComponent(bStartGame, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(56)
-                                        .addComponent(bExit, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(313, Short.MAX_VALUE))
-                );
-                contentPane.setLayout(gl_contentPane);
+		menuBar.add(mFile);
+		mFile.add(miNew);
+		mFile.addSeparator();
+		mFile.add(miExit);
+		setContentPane(contentPane);
 
+		bStartGame = new JButton("Start Game");
+		bStartGame.setSize(Global.SCREEN_WIDTH / 10, Global.SCREEN_HEIGHT / 10);
+		bStartGame.addActionListener(this);
 
-                setJMenuBar(menuBar);
-        }
+		bExit = new JButton("Exit");
+		bExit.addActionListener(this);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane
+				.setHorizontalGroup(gl_contentPane
+						.createParallelGroup(Alignment.TRAILING)
+						.addGroup(
+								gl_contentPane
+										.createSequentialGroup()
+										.addGap(189)
+										.addGroup(
+												gl_contentPane
+														.createParallelGroup(
+																Alignment.TRAILING)
+														.addComponent(
+																bExit,
+																Alignment.LEADING,
+																GroupLayout.DEFAULT_SIZE,
+																427,
+																Short.MAX_VALUE)
+														.addComponent(
+																bStartGame,
+																Alignment.LEADING,
+																GroupLayout.DEFAULT_SIZE,
+																427,
+																Short.MAX_VALUE))
+										.addGap(184)));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(
+				Alignment.LEADING).addGroup(
+				gl_contentPane
+						.createSequentialGroup()
+						.addGap(81)
+						.addComponent(bStartGame, GroupLayout.PREFERRED_SIZE,
+								61, GroupLayout.PREFERRED_SIZE)
+						.addGap(56)
+						.addComponent(bExit, GroupLayout.PREFERRED_SIZE, 68,
+								GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(313, Short.MAX_VALUE)));
+		contentPane.setLayout(gl_contentPane);
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                String buttonName = e.getActionCommand();
+		setJMenuBar(menuBar);
+	}
 
-                switch (buttonName) {
-                case "Start Game":
-                        RegistrationFrame regFrame = new RegistrationFrame();
-                        regFrame.setVisible(true);
-                        this.setVisible(false);
-                        this.dispose();
-                        System.out.println("start");
-                        break;
-                case "High Scores":
-                        System.out.println("Pressed High");
-                        break;
-                case "Exit":
-                        System.exit(0);
-                        break;
-                case "miExit":
-                        System.exit(0);
-                default:
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String buttonName = e.getActionCommand();
 
-                }
+		switch (buttonName) {
+		case "Start Game":
+			RegistrationFrame regFrame = new RegistrationFrame();
+			this.setVisible(false);
+			regFrame.setVisible(true);
 
-        }
-
+			this.dispose();
+			System.out.println("start");
+			break;
+		case "Exit":
+			System.exit(0);
+			break;
+		case "miExit":
+			System.exit(0);
+		default:
+		}
+	}
 }

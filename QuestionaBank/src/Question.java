@@ -1,7 +1,8 @@
-
 /**
- * @author Abdykerim
- *
+ * Question class holds true-false and multiple choice questions
+ * 
+ * @author Rustam Alashrafov, Abdykerim Erikov
+ * 
  */
 public class Question {
 	private String question;
@@ -13,15 +14,17 @@ public class Question {
 	private String correctAnswer;
 	private String explanation;
 	private int type;
-	//true-false question constructor
-	public Question(String question, String answer){
+
+	// true-false question constructor
+	public Question(String question, String answer) {
 		this.question = question;
 		this.correctAnswer = answer;
 		this.type = 0;
 	}
-	
-	//multiple choice question constructor
-	public Question(String question, String a, String b, String c, String d, String e, String explanation, String correctAnswer){
+
+	// multiple choice question constructor
+	public Question(String question, String a, String b, String c, String d,
+			String e, String explanation, String correctAnswer) {
 		this.correctAnswer = a;
 		this.question = question;
 		this.a = a;
