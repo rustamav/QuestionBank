@@ -274,6 +274,8 @@ public class MCFrame extends JFrame implements ActionListener {
 			break;
 		case "Next Question":
 			if (counter == 8) {
+				if (userAnswer.equalsIgnoreCase(q.getCorrectAnswer()))
+					score += 5;
 				ShareData.userMCScore += score;
 				h.connectionClose();
 				ScoreFrame sFrame = new ScoreFrame();
